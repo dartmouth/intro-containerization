@@ -2,7 +2,7 @@
 
 ## Toolset
 
-Install [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/) or [Docker Desktop](https://www.docker.com/products/docker-desktop/). You can check Docker Desktop license information at https://www.docker.com/pricing/faq/ where they list that use is free for research at non-for-profit institutions (last checked 2023-10-16).
+Please install Docker Desktop (https://www.docker.com/products/docker-desktop) or Rancher Desktop (https://docs.rancherdesktop.io/getting-started/installation/) before the workshop if you plan to follow along. You can check Docker Desktop license information at https://www.docker.com/pricing/faq/ where they list that use is free for research at non-for-profit institutions (last checked 2023-10-19).
 
 ## Hello World httpd example
 

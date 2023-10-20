@@ -4,7 +4,7 @@
 
 - In the beginning we had physical servers
 - Then we got Virtual Machines (VMs)
-  - Virtualize the OS
+  - virtualize the OS
 - Now containers
   - virtualize an application
 - Next is functions
