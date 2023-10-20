@@ -13,7 +13,7 @@
 
 Containers are the #1 most wanted and #2 most loved software developer tools, and helps millions of researchers and IT professionals build, share and run any app, anywhere - locally, in the institution’s infrastructure or in the cloud. It is a pivotal tool for Reproducible Research that allows anyone with a container to run any analysis the ways it was designed, including all the dependencies and necessary software.  Research Computing is offering this hands-on workshop as an introduction to containerization. In this introduction, you'll learn the fundamentals of containerization and how to build/use Docker/container images.
 
-Please install Docker Desktop (https://www.docker.com/products/docker-desktop) before the workshop if you plan to follow along.
+Please install Docker Desktop (https://www.docker.com/products/docker-desktop) or Rancher Desktop (https://docs.rancherdesktop.io/getting-started/installation/) before the workshop if you plan to follow along. You can check Docker Desktop license information at https://www.docker.com/pricing/faq/ where they list that use is free for research at non-for-profit institutions (last checked 2023-10-19).
 
 ## Agenda
 

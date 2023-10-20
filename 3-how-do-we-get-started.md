@@ -119,7 +119,11 @@ RUN apt update \
 COPY . /usr/local/apache2/htdocs
 EOF
 
-docker build --tag my-website:2023-10-20 .
+docker build -t my-website:2023-10-20 .
+
+# Note, if you're on an ARM64 CPU, you sometimes need to use
+# "--platform linux/amd64" with your build command
+# Example: docker build --platform linux/amd64 -t my-website:2023-10-20 .
 
 docker run -d \
 --name webster2 \
@@ -174,5 +178,36 @@ Other common ones are
 - inspect
 - cp
 - tag
+
+Let's try a docker-compose example
+
+```sh
+cd ~/Downloads
+
+wget https://git.dartmouth.edu/research-itc-public/containerization-workshop/-/archive/main/containerization-workshop-main.zip
+
+unzip containerization-workshop-main.zip
+
+rm -f containerization-workshop-main.zip
+
+cat docker-compose.yml
+
+mkdir todo-mysql-data
+sudo chown 999:999 todo-mysql-data
+sudo chmod 777 todo-mysql-data
+
+docker-compose up -d
+
+# Note, if you're on an ARM64 CPU
+# Error: no matching manifest for linux/arm64/v8 in the manifest list entries
+# Fix: after line 6, after "image: mysql:5.7", add
+# platform: linux/amd64
+
+docker ps
+
+# Browse to http://localhost:3000/
+
+docker-compose down
+```
 
 Next: [Examples](4-examples.md)
