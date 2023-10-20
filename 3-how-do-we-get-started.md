@@ -88,7 +88,7 @@ docker exec -it webster bash
 
 # Install VIM
 apt update
-apt install -y vim
+apt install -y vim nano
 
 vi htdocs/index.html
 
@@ -114,7 +114,7 @@ cat << EOF > Dockerfile
 FROM httpd
 
 RUN apt update \
- && apt install -y vim
+ && apt install -y vim nano
 
 COPY . /usr/local/apache2/htdocs
 EOF
