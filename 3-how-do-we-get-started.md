@@ -4,6 +4,11 @@
 
 Please install Podman Desktop (https://podman.io/docs/installation) before the workshop if you plan to follow along.
 
+Why Podman?
+- Podman is a Red Hat product
+- It works great in rootless environments (e.g. HPC)
+- It does not have any license concerns
+
 ## Hello World httpd example
 
 Run our first container
@@ -181,80 +186,19 @@ Other common ones are
 
 ## Compose
 
-https://betterstack.com/community/guides/scaling-docker/podman-compose/
-
 ```sh
-mkdir ~/Downloads/compose-demo
-cd ~/Downloads/compose-demo
-
-cat << EOF > compose.yaml
-services:
-  web:
-    image: nginx
-    ports:
-      - "8000:80"
-EOF
-
-podman compose up
-
-# Browse to http://localhost:8000/
-
-
-```
-
-
-
-
-```sh
-cd ~/Downloads/containerization-workshop-main
-
-podman compose up -d mysql
-podman compose logs -f mysql
-
-podman compose up -d todo-app
-podman compose logs -f todo-app
-
-podman compose run --rm --service-ports todo-app /bin/sh
-
-yarn install
-yarn run dev
-
-
-```
-
-
-Let's try a podman compose example
-
-```sh
-cd ~/Downloads
-
-wget -O containerization-workshop.zip https://github.com/dartmouth/containerization-workshop/archive/refs/heads/main.zip
-
-unzip containerization-workshop.zip
-
-rm -f containerization-workshop.zip
-
-cd containerization-workshop-main
-cat docker-compose.yml
-
-mkdir todo-mysql-data
-sudo chown 999:999 todo-mysql-data
-sudo chmod 777 todo-mysql-data
-
 podman compose up -d
-
-# Note, if you're on an ARM64 CPU
-# Error: no matching manifest for linux/arm64/v8 in the manifest list entries
-# Fix: after line 6, after "image: mysql:5.7", add
-# platform: linux/amd64
-
-podman ps
 
 podman compose logs -f
 
 # Browse to http://localhost:3000/
-
-podman compose down
 ```
+
+## Things are constantly moving
+
+Examples
+- podman-compose
+- podman compose
+- Quadlet
 
 Next: [Examples](4-examples.md)
