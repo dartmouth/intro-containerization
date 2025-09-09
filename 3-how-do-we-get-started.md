@@ -2,32 +2,32 @@
 
 ## Toolset
 
-Please install Docker Desktop (https://www.docker.com/products/docker-desktop) or Rancher Desktop (https://docs.rancherdesktop.io/getting-started/installation/) before the workshop if you plan to follow along. You can check Docker Desktop license information at https://www.docker.com/pricing/faq/ where they list that use is free for research at non-for-profit institutions (last checked 2023-10-19).
+Please install Podman Desktop (https://podman.io/docs/installation) before the workshop if you plan to follow along.
 
 ## Hello World httpd example
 
 Run our first container
 
 ```sh
-docker run --help
+podman run --help
 
-docker run --rm --publish 8080:80 httpd
-# or equivalently: docker run --rm -p 8080:80 httpd
+podman run --rm --publish 8080:80 httpd
+# or equivalently: podman run --rm -p 8080:80 httpd
 
 # Browse to http://localhost:8080/
 
 # Use `Ctrl-C` to stop the process, which also deletes the container.
 
 # Let's check what containers exist
-docker ps --all
-# or equivalently: docker ps -a
+podman ps --all
+# or equivalently: podman ps -a
 
-docker run --detach --name webster --publish 8080:80 httpd
-# or equivalently: docker run -d --name webster -p 8080:80 httpd
+podman run --detach --name webster --publish 8080:80 httpd
+# or equivalently: podman run -d --name webster -p 8080:80 httpd
 
 # View the logs
-docker logs --follow --tail 100 webster
-# or equivalently: docker logs -f -n 100 webster
+podman logs --follow --tail 100 webster
+# or equivalently: podman logs -f -n 100 webster
 ```
 
 Let's add in mount points. From now on I'll mostly use short hand commands.
@@ -37,13 +37,13 @@ Let's add in mount points. From now on I'll mostly use short hand commands.
 # We need to start over with a new one
 
 # Stop our existing container
-docker stop webster
+podman stop webster
 
 # Delete it
-docker rm webster
+podman rm webster
 
 # If we wanted to stop and delete it with one command, the following works
-docker rm -f webster
+podman rm -f webster
 
 # Create some local HTML content
 mkdir -p $HOME/Downloads/webdocs
@@ -59,14 +59,14 @@ cat << EOF > $HOME/Downloads/webdocs/index.html
 EOF
 
 # Run our new container with the mount point
-docker run -d \
+podman run -d \
 --name webster \
 -p 8080:80 \
 -v $HOME/Downloads/webdocs:/usr/local/apache2/htdocs \
 httpd
 
 # Tail the logs
-docker logs -f webster
+podman logs -f webster
 
 # Browse to http://localhost:8080/
 
@@ -84,7 +84,7 @@ cat << EOF > $HOME/Downloads/webdocs/index.html
 EOF
 
 # Now let's go inside the container
-docker exec -it webster bash
+podman exec -it webster bash
 
 # Install VIM
 apt update
@@ -101,7 +101,7 @@ vi htdocs/index.html
 #   - press ":" to enter command mode
 #   - press "wq" and then press enter to "write" and "quit"
   <div>
-    <img src="https://w7.pngwing.com/pngs/627/244/png-transparent-docker-logo-logos-logos-and-brands-icon-thumbnail.png">
+    <img src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_auto/linuxiac.com/wp-content/uploads/2024/10/podman-timed-releases-1024x576.jpg" />
   </div>
 ```
 
@@ -119,20 +119,20 @@ RUN apt update \
 COPY . /usr/local/apache2/htdocs
 EOF
 
-docker build -t my-website:2023-10-20 .
+podman build -t my-website:latest .
 
 # Note, if you're on an ARM64 CPU, you sometimes need to use
 # "--platform linux/amd64" with your build command
-# Example: docker build --platform linux/amd64 -t my-website:2023-10-20 .
+# Example: podman build --platform linux/amd64 -t my-website:latest .
 
-docker run -d \
+podman run -d \
 --name webster2 \
 -p 8081:80 \
-my-website:2023-10-20
+my-website:latest
 
 # Browse to http://localhost:8081/
 
-docker exec -it webster2 bash
+podman exec -it webster2 bash
 
 vi htdocs/index.html
 
@@ -148,66 +148,113 @@ vi htdocs/index.html
 
 exit
 
-docker rm -f webster2
+podman rm -f webster2
 
-docker run -d \
+podman run -d \
 --name webster2 \
 -p 8081:80 \
-my-website:2023-10-20
+my-website:latest
 
 # Browse to http://localhost:8081/
 ```
 
 What commands have we learned
 
-- docker run
-- docker ps
-- docker logs
-- docker stop
-- docker rm
-- docker exec
-- docker build
+- podman run
+- podman ps
+- podman logs
+- podman stop
+- podman rm
+- podman exec
+- podman build
 
 Other common ones are
 
-- docker create
-- docker start
-- pull
-- push
-- images
-- inspect
-- cp
-- tag
+- podman create
+- podman start
+- podman pull
+- podman push
+- podman images
+- podman inspect
+- podman cp
+- podman tag
 
-Let's try a docker-compose example
+## Compose
+
+https://betterstack.com/community/guides/scaling-docker/podman-compose/
+
+```sh
+mkdir ~/Downloads/compose-demo
+cd ~/Downloads/compose-demo
+
+cat << EOF > compose.yaml
+services:
+  web:
+    image: nginx
+    ports:
+      - "8000:80"
+EOF
+
+podman compose up
+
+# Browse to http://localhost:8000/
+
+
+```
+
+
+
+
+```sh
+cd ~/Downloads/containerization-workshop-main
+
+podman compose up -d mysql
+podman compose logs -f mysql
+
+podman compose up -d todo-app
+podman compose logs -f todo-app
+
+podman compose run --rm --service-ports todo-app /bin/sh
+
+yarn install
+yarn run dev
+
+
+```
+
+
+Let's try a podman compose example
 
 ```sh
 cd ~/Downloads
 
-wget https://git.dartmouth.edu/research-itc-public/containerization-workshop/-/archive/main/containerization-workshop-main.zip
+wget -O containerization-workshop.zip https://github.com/dartmouth/containerization-workshop/archive/refs/heads/main.zip
 
-unzip containerization-workshop-main.zip
+unzip containerization-workshop.zip
 
-rm -f containerization-workshop-main.zip
+rm -f containerization-workshop.zip
 
+cd containerization-workshop-main
 cat docker-compose.yml
 
 mkdir todo-mysql-data
 sudo chown 999:999 todo-mysql-data
 sudo chmod 777 todo-mysql-data
 
-docker-compose up -d
+podman compose up -d
 
 # Note, if you're on an ARM64 CPU
 # Error: no matching manifest for linux/arm64/v8 in the manifest list entries
 # Fix: after line 6, after "image: mysql:5.7", add
 # platform: linux/amd64
 
-docker ps
+podman ps
+
+podman compose logs -f
 
 # Browse to http://localhost:3000/
 
-docker-compose down
+podman compose down
 ```
 
 Next: [Examples](4-examples.md)

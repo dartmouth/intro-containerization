@@ -3,7 +3,7 @@
 ## Minecraft
 
 ```sh
-docker run -d -it \
+podman run -d -it \
 --name minecraft \
 -p 25565:25565 \
 -e EULA=TRUE \
@@ -14,7 +14,7 @@ docker run -d -it \
 -e SERVER_NAME=GagneServer \
 -e MOTD="Gagne Docker server" \
 -e OPS="ElijahGagne BenjaminGagne" \
--e LEVEL="Oct-19-2023" \
+-e LEVEL="ForeverWorld" \
 -v $HOME/minecraft-data:/data \
 itzg/minecraft-server
 ```
@@ -22,7 +22,7 @@ itzg/minecraft-server
 ## Let's Encrypt Certbot
 
 ```sh
-docker run --rm --name certbot -ti ubuntu bash
+podman run --rm --name certbot -ti ubuntu bash
 
 apt update \
 && apt install -y python3 python3-venv \
@@ -42,6 +42,6 @@ certbot certonly --key-type rsa \
 
 ## Test SSH
 
-[Linux Auth](https://git.dartmouth.edu/research-itc-public/linux-auth)
+[Linux Auth](https://github.com/dartmouth/linux-auth)
 
 Next: [Where to next?](5-where-to-next.md)

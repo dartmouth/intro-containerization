@@ -1,0 +1,29 @@
+services:
+  mysql:
+    hostname: todo-mysql
+    container_name: todo-mysql
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: todos
+    volumes:
+      -  ./todo-mysql-data:/var/lib/mysql
+  todo-app:
+    hostname: todo-app
+    container_name: todo-app
+    image: node:12-buster
+    command: ["sh", "-c", "yarn install && yarn run dev"]
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      MYSQL_HOST: todo-mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: todos
+    volumes:
+      - ./app:/app
+    working_dir: /app

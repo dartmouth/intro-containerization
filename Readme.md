@@ -1,19 +1,19 @@
-# Introduction to Docker and Containerization
+# Introduction to Containerization
 
 ## Details
 
-- Title: Introduction to Docker/Containerization
-- Date: 10/20/2023
-- Time: 11:00am - 12:00pm
-- Online: https://dartmouth.zoom.us/j/94428801738?pwd=VUFOTnlDVGttVnVyMHB5MnJkNm03UT09&from=addon
+- Title: Introduction to Containerization
+- Date: 9/11/2025
+- Time: 10:30am - 12:00pm
+- Online: https://dartmouth.zoom.us/j/92213826772?pwd=wtKidoELk6HUj5Rt0bz7aVBLn5auxH.1
 - Presenter: Elijah Gagne
-- Categories: Reproducible Research
+- Categories: DevCouRSE, Reproducible Research
 
 ## Description
 
-Containers are the #1 most wanted and #2 most loved software developer tools, and helps millions of researchers and IT professionals build, share and run any app, anywhere - locally, in the institution’s infrastructure or in the cloud. It is a pivotal tool for Reproducible Research that allows anyone with a container to run any analysis the ways it was designed, including all the dependencies and necessary software.  Research Computing is offering this hands-on workshop as an introduction to containerization. In this introduction, you'll learn the fundamentals of containerization and how to build/use Docker/container images.
+Containers are the #1 most wanted and #2 most loved software developer tools, and helps millions of researchers and IT professionals build, share and run any app, anywhere - locally, in the institution’s infrastructure or in the cloud. It is a pivotal tool for Reproducible Research that allows anyone with a container to run any analysis the ways it was designed, including all the dependencies and necessary software. Research Computing and Data is offering this hands-on workshop as an introduction to containerization. In this introduction, you'll learn the fundamentals of containerization and how to build/use container images.
 
-Please install Docker Desktop (https://www.docker.com/products/docker-desktop) or Rancher Desktop (https://docs.rancherdesktop.io/getting-started/installation/) before the workshop if you plan to follow along. You can check Docker Desktop license information at https://www.docker.com/pricing/faq/ where they list that use is free for research at non-for-profit institutions (last checked 2023-10-19).
+Please install Podman Desktop (https://podman.io/docs/installation) before the workshop if you plan to follow along.
 
 ## Agenda
 
