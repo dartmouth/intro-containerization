@@ -44,4 +44,4 @@ certbot certonly --key-type rsa \
 
 [Linux Auth](https://github.com/dartmouth/linux-auth)
 
-Next: [Where to next?](5-where-to-next.md)
+Next: [Activity](5-activity.md)

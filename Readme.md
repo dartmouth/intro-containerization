@@ -21,6 +21,7 @@ Please install Podman Desktop (https://podman.io/docs/installation) before the w
 2. [Why do we care?](2-why-do-we-care.md)
 3. [How do we get started?](3-how-do-we-get-started.md)
 4. [Examples](4-examples.md)
-5. [Where to next?](5-where-to-next.md)
+5. [Activity](5-activity.md)
+6. [Where to next?](6-where-to-next.md)
 
 Next: [What are containers?](1-what-are-containers.md)
